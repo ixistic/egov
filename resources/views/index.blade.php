@@ -32,7 +32,9 @@
               <th>Author</th>
               <th>Created Date</th>
               <th>Last Modified</th>
-              <th></th>
+              @if ($user->is_boss == 0)
+                <th></th>
+              @endif
             </thead>
             <tbody>
               @foreach ($documents as $document)
@@ -42,14 +44,16 @@
                   <td>{{ $document->username }}</td>
                   <td>{{ $document->created_at }}</td>
                   <td>{{ $document->updated_at }}</td>
-                  <td>
-                    <a href="{{ route('documents-edit',$document->id) }}" class="btn btn-warning btn-sm" role="button">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <a href="{{ route('documents-delete',$document->id) }}" class="btn btn-danger btn-sm" role="button">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                  </td>
+                  @if ($user->is_boss == 0)
+                    <td>
+                      <a href="{{ route('documents-edit',$document->id) }}" class="btn btn-warning btn-sm" role="button">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </a>
+                      <a href="{{ route('documents-delete',$document->id) }}" class="btn btn-danger btn-sm" role="button">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </a>
+                    </td>
+                  @endif
                 </tr>
               @endforeach
               </tbody>

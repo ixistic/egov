@@ -28,9 +28,16 @@ class DocumentController extends Controller
     public function showDocument()
     {
         $user = Auth::user();
-        $documents = Document::join('users','users.id','=','officer_id')
-        ->select('documents.*', 'users.name as username')
-        ->get();
+        if($user->is_boss == 1){
+          $documents = Document::join('users','users.id','=','officer_id')
+          ->select('documents.*', 'users.name as username')
+          ->get();
+        }else{
+          $documents = Document::join('users','users.id','=','officer_id')
+          ->where('users.id',$user->id)
+          ->select('documents.*', 'users.name as username')
+          ->get();
+        }
         return view('index', ['documents' => $documents,'user' => $user]);
     }
 
