@@ -25,6 +25,9 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::get('/test', [
+  return view('welcome');
+]);
 
 Route::group(['middleware' => ['web']], function () {
     //
