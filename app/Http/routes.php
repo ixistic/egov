@@ -34,4 +34,24 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+    Route::group(['prefix' => 'documents'], function () {
+      Route::get('/', [
+        'as' => 'documents', 'uses' => 'DocumentController@showDocument'
+      ]);
+      Route::get('/detail/{id}', [
+        'as' => 'documents-detail', 'uses' => 'DocumentController@showDetailDocument'
+      ]);
+      Route::get('/edit/{id}', [
+        'as' => 'documents-edit', 'uses' => 'DocumentController@showEditDocument'
+      ]);
+      Route::post('/post', [
+        'as' => 'documents-post', 'uses' => 'DocumentController@postDocument'
+      ]);
+      Route::post('/edit/post', [
+        'as' => 'documents-edit-post', 'uses' => 'DocumentController@editDocument'
+      ]);
+      Route::get('/delete/{id}', [
+        'as' => 'documents-delete', 'uses' => 'DocumentController@deleteDocument'
+      ]);
+    });
 });

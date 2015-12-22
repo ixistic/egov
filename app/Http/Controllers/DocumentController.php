@@ -1,0 +1,103 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use Auth;
+use App\User;
+use App\Document;
+use App\Comment;
+use Validator;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class DocumentController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function showDocument()
+    {
+        $user = Auth::user();
+        $documents = Document::where('officer_id',$user->id)->first();
+        return view('documents', ['documents' => $documents,'user' => $user]);
+    }
+
+    public function showDetailDocument($id){
+        $user = Auth::user();
+        $documents = Document::where(['id'=>$id,'officer_id'=>$user->id])->first();
+        return view('document/detail', ['documents' => $documents,'user' => $user]);
+    }
+
+    public function showEditDocument($id){
+        $user = Auth::user();
+        $documents = Document::where(['id'=>$id,'officer_id'=>$user->id])->first();
+        return view('document/edit', ['documents' => $documents,'user' => $user]);
+    }
+
+    protected function validator(Request $request)
+    {
+        return Validator::make($request, [
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'file' => 'required'
+        ]);
+    }
+
+    protected function create(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $user = Auth::user();
+            $user_id = $user->id;
+            $file = $request->file('file');
+            $fileName = str_random(12) . '.' .$request->file('file')->getClientOriginalExtension();
+            $request->file('image')->move(base_path() . '/public/file/', $fileName);
+            Document::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => 'pre-request',
+                'officer_id' => $user->id,
+                'pic_path' => $fileName
+            ]);
+            return Redirect::route('documents')->with('message', 'Document added!');
+        }else{
+            return Redirect::route('documents')->with('message', 'Something wrong!!');
+        }
+    }
+
+    public function editDocument(Request $request,$id){
+        if ($request->hasFile('file')) {
+            $user = Auth::user();
+            $user_id = $user->id;
+            $file = $request->file('file');
+            $fileName = str_random(12).'.'.$request->file('file')->getClientOriginalExtension();
+            $request->file('image')->move(base_path() . '/public/file/', $fileName);
+            Document::where('id',$id)->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => 'pre-request',
+                'officer_id' => $user->id,
+                'pic_path' => $fileName
+            ]);
+            return Redirect::route('documents')->with('message', 'Document edited!');
+        }else{
+            return Redirect::route('documents')->with('message', 'Something wrong!!');
+        }
+    }
+
+    public function deleteDocument($id){
+        $document = Document::find($id);
+        if(isset($document)){
+            Document::where('id',$id)->update(['status' => 'deleted']);
+        }
+    }
+
+}
