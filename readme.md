@@ -1,28 +1,40 @@
-## Laravel PHP Framework
+#OFFICER AND BOSS DOCUMENT MANAGEMENT
+#Member
+1. Sarit Suriyasangpetch
+2. Veerapat Threeravipark
+3. Juthamas Utamaphethai
+4. Latthapat Tangtrustham
+5. Pankamol Srikaew
+6. Ahn Jaeyeol
+7. Nezar
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+##Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+This project is Officer&Boss Document Management Application is one part of Object Oriented Spftware Engineer (OOSE) and internship subject at kookmin university. This project tries to make a Document Management Application that officer can hand in document to his boss so that his boss can check, approve and share his document which can be run on Web Browser.This software project target to bring a general document management to be a online system on Web Application that easy to hand in, check, approve and share document.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+##Product Features
+* Creating documents
+* Editing the document
+* Deleting the document
+* Uploading documents
+* Tracking document’s status
+* Describing the document
+* Searching the document
+* Sign in and sign out
+* Downloading document
+* Checking the document
+* Approving the document
+* Reviewing the document
+* Declining document
+* Updating document’s status
 
-## Official Documentation
+##User Classes and Characteristics
+1. Officer
+2. Boss
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+##Design and Implementation Constraints
+* System use Mysql database
+* All codes shall be written in php , css , html , etc.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-# egov
