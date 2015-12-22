@@ -1,2 +1,5 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+.glyphicon {
+  top: 0 !important;
+  float: left;
+}
