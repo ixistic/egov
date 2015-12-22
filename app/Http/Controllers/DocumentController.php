@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
 use Auth;
 use App\User;
@@ -28,7 +29,16 @@ class DocumentController extends Controller
     public function showDocument()
     {
         $user = Auth::user();
-        $documents = Document::where('officer_id',$user->id)->get();
+        $query = Input::get('search');
+        $documents = Document::join('users','users.id','=','officer_id');
+        if($user->is_boss == 1){
+          $documents = $documents->where('users.id', $user->id);
+        }
+        if(isset($query)){
+          $documents = $documents->where('documents.name','LIKE', '%'.$query.'%');
+        }
+        $documents = $documents->select('documents.*', 'users.name as username');
+        $documents = $documents->get();
         return view('index', ['documents' => $documents,'user' => $user]);
     }
 
@@ -92,7 +102,7 @@ class DocumentController extends Controller
                 'description' => $request->description,
                 'status' => 'pre-request',
                 'officer_id' => $user->id,
-                'pic_path' => $fileName
+                'filename' => $fileName
             ]);
             return Redirect::route('documents')->with('message', 'Document edited!');
         }else{

@@ -11,10 +11,9 @@
         </div>
         <div class="custom-search-input">
           <div class="input-group col-xs-6">
-            <form  role="form" method="POST" action="{{ url('/upload') }}">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form  role="form" method="GET" action="{{ url('/') }}">
               <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Search" />
+                <input type="text" name="search" class="form-control" placeholder="Search" />
                 <i class="glyphicon glyphicon-search form-control-feedback"></i>
               </div>
               <input class="search-btn" type="submit" />
@@ -32,7 +31,9 @@
               <th>Author</th>
               <th>Created Date</th>
               <th>Last Modified</th>
-              <th></th>
+              @if ($user->is_boss == 0)
+                <th></th>
+              @endif
             </thead>
             <tbody>
               @foreach ($documents as $document)

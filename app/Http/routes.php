@@ -52,7 +52,7 @@ Route::group(['middleware' => 'web'], function () {
       Route::post('/post', [
         'as' => 'documents-post', 'uses' => 'DocumentController@postDocument'
       ]);
-      Route::post('/edit/post', [
+      Route::post('/edit/post/{id}', [
         'as' => 'documents-edit-post', 'uses' => 'DocumentController@editDocument'
       ]);
       Route::get('/delete/{id}', [
