@@ -9,7 +9,7 @@
     <div class="col-xs-12">
       <div class="row">
         <div class="col-xs-6">
-          <a href="/upload"><button class="btn btn-primary" type="button">Add Document</button></a>
+          <a href="{{ route('documents-add') }}"><button class="btn btn-primary" type="button">Add Document</button></a>
         </div>
         <div class="custom-search-input">
           <div class="input-group col-xs-6">

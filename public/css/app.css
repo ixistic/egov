@@ -23,7 +23,7 @@ form > .row > label {
   text-align: right;
 }
 
-#search-btn {
+.search-btn {
   display: none;
 }
 
