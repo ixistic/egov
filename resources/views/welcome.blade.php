@@ -56,69 +56,59 @@
     }
 </style>
 
-<div class="container spark-screen">
-     <div class="row border-row">
+<div class="container">
+    <h1>Document Detail</h1>
+     <div class="row border-row" style="margin-top: 3vh;">
         <div class="col-xs-12">
             <div class="row">
-                <div class="col-xs-6">
-                    <input class="btn btn-primary" type="button" value="Add Document">
+                <div class="col-xs-4">
+                    <b>Name</b>
                 </div>
-                <div id="custom-search-input">
-                    <div class="input-group col-xs-6">
-                         <input type="text" class="search-query form-control " placeholder="Search" />
-                             <span class="input-group-btn">
-                                <button class="btn" type="button">
-                                    <span class=" glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
-                    </div>
+                <div class="col-xs-8">
+                    Document1
                 </div>
             </div>
-            <br>
+            <hr class="divider"/>
             <div class="row">
-                <table class="table table-hover" style="margin-top:5vh;">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Author</th>
-                            <th>Created Date</th>
-                            <th>Last Modified</th>
-                            <th></th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Document1</td>
-                            <td>Pre-request</td>
-                            <td>Officer1</td>
-                            <td>12 Nov 2015</td>
-                            <td>22 Dec 2015</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span> 
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-trash"></span> 
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Document2</td>
-                            <td>Approved</td>
-                            <td>Officer2</td>
-                            <td>1 Nov 2015</td>
-                            <td>10 Dec 2015</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span> 
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-trash"></span> 
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-xs-4">
+                    <b>File</b>
+                </div>
+                <div class="col-xs-8">
+                    Document1.pdf
+                </div>
+            </div>
+            <hr class="divider"/>
+            <div class="row">
+                <div class="col-xs-4">
+                    <b>Description</b>
+                </div>
+                <div class="col-xs-8">
+                    Document description
+                </div>
+            </div>
+            <hr class="divider"/>
+            <div class="row">
+                <div class="col-xs-4">
+                    <b>Feedback</b>
+                </div>
+                <div class="col-xs-8"></div>
+            </div>
+            <br>
+            <div class="well">
+                <strong>Boss</strong><br>
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <small>22/12/2015</small>
+                </blockquote>
+            </div>
+            <br>
+            <div class="text-center">
+                <a href="#" class="btn btn-warning btn-lg">
+                    <span class="glyphicon glyphicon-pencil"></span> &nbsp;&nbsp;Edit 
+                </a>
+                <a href="#" class="btn btn-danger btn-lg" style="margin-left">
+                    <span class="glyphicon glyphicon-trash"></span>  &nbsp;&nbsp;Delete 
+                </a>
             </div>
         </div>
     </div>
