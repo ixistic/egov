@@ -7,7 +7,9 @@
     <div class="col-xs-12">
       <div class="row">
         <div class="col-xs-6">
-          <a href="{{ route('documents-add') }}"><button class="btn btn-primary" type="button">Add Document</button></a>
+          @if ($user->is_boss == 0)
+            <a href="{{ route('documents-add') }}"><button class="btn btn-primary" type="button">Add Document</button></a>
+          @endif
         </div>
         <div class="custom-search-input">
           <div class="input-group col-xs-6">
@@ -49,7 +51,7 @@
                 <td class="status-del">
                 @endif
                 {{ $document->status }}</td>
-                <td>{{ $user->name }}</td>
+                <td>{{ $document->username }}</td>
                 <td>{{ $document->created_at }}</td>
                 <td>{{ $document->updated_at }}</td>
                 @if ($user->is_boss == 0)
@@ -71,19 +73,3 @@
     </div>
   </div>
   @endsection
-
-  <script type="text/javascript">
-
-  $( document ).ready(function() {
-    $('form').each(function() {
-      $(this).find('input').keypress(function(e) {
-        // Enter pressed?
-        if(e.which == 10 || e.which == 13) {
-          console.log("qwe");
-          // this.form.submit();
-        }
-      });
-    });
-    $("#search-btn").find('input[type=submit]').hide();
-  });
-  </script>

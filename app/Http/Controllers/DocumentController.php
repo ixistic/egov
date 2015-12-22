@@ -31,7 +31,7 @@ class DocumentController extends Controller
         $user = Auth::user();
         $query = Input::get('search');
         $documents = Document::join('users','users.id','=','officer_id');
-        if($user->is_boss == 1){
+        if($user->is_boss == 0){
           $documents = $documents->where('users.id', $user->id);
         }
         if(isset($query)){
@@ -81,7 +81,7 @@ class DocumentController extends Controller
                 'description' => $request->description,
                 'status' => 'pre-request',
                 'officer_id' => $user->id,
-                'pic_path' => $fileName
+                'filename' => $fileName
             ]);
             return Redirect::route('documents')->with('message', 'Document added!');
         }else{
@@ -90,24 +90,21 @@ class DocumentController extends Controller
     }
 
     public function editDocument(Request $request,$id){
-        if ($request->hasFile('file')) {
-            $user = Auth::user();
-            $user_id = $user->id;
-            $file = $request->file('file');
-            $ext = $file->getClientOriginalExtension();
-            $fileName = str_random(12).'.'.$ext;
-            $file->move(base_path() . '/public/file/', $fileName);
-            Document::where('id',$id)->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'status' => 'pre-request',
-                'officer_id' => $user->id,
-                'filename' => $fileName
-            ]);
-            return Redirect::route('documents')->with('message', 'Document edited!');
+        $oldDocument = Document::find($id);
+        if ($request->exists('file')) {
+          $file = $request->file('file');
+          $ext = $file->getClientOriginalExtension();
+          $fileName = str_random(12).'.'.$ext;
+          $file->move(base_path() . '/public/file/', $fileName);
         }else{
-            return Redirect::route('documents')->with('message', 'Something wrong!!');
+          $fileName = $oldDocument->filename;
         }
+        Document::where('id',$id)->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'filename' => $fileName
+        ]);
+        return Redirect::route('documents')->with('message', 'Document edited!');
     }
 
     public function deleteDocument($id){
