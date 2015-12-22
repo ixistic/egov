@@ -74,7 +74,10 @@
                     <b>File</b>
                 </div>
                 <div class="col-xs-8">
-                    Document1.pdf
+                    Document1.pdf 
+                    <button type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
+                        <span class="glyphicon glyphicon-download-alt"></span> Download
+                    </button>
                 </div>
             </div>
             <hr class="divider"/>
