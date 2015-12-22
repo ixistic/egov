@@ -57,73 +57,42 @@
 </style>
 
 <div class="container">
-    <h1>Document Detail</h1>
-     <div class="row border-row" style="margin-top: 3vh;">
+    <h1>Upload Document</h1>
+        <div class="row border-row" style="margin-top: 3vh;">
         <div class="col-xs-12">
-            <div class="row">
-                <div class="col-xs-4">
-                    <b>Name</b>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-xs-2 col-xs-offset-2">Name</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" id="name">
+                    </div>
                 </div>
-                <div class="col-xs-8">
-                    Document1
+
+                <div class="form-group">
+                    <label class="col-xs-2 col-xs-offset-2">File</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" id="disabledInput" type="text" placeholder="No file ..." disabled>
+                    </div>
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-primary">Browse</button>
+                    </div>
+                </div> 
+
+                <div class="form-group">
+                    <label class="col-xs-2 col-xs-offset-2">Description</label>
+                    <div class="col-xs-6">
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
                 </div>
-            </div>
-            <hr class="divider"/>
-            <div class="row">
-                <div class="col-xs-4">
-                    <b>File</b>
+
+                <div class="form-group">
+                    <div class="col-xs-6 col-xs-offset-4">
+                        <button type="button" class="btn btn-primary btn-block">Upload</button>
+                    </div>
                 </div>
-                <div class="col-xs-8">
-                    Document1.pdf 
-                    <button type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
-                        <span class="glyphicon glyphicon-download-alt"></span> Download
-                    </button>
-                </div>
-            </div>
-            <hr class="divider"/>
-            <div class="row">
-                <div class="col-xs-4">
-                    <b>Description</b>
-                </div>
-                <div class="col-xs-8">
-                    Document description
-                </div>
-            </div>
-            <hr class="divider"/>
-            <div class="row">
-                <div class="col-xs-4">
-                    <b>Status</b>
-                </div>
-                <div class="col-xs-8">
-                    Approved
-                </div>
-            </div>
-            <hr class="divider"/>
-            <div class="row">
-                <div class="col-xs-4">
-                    <b>Feedback</b>
-                </div>
-                <div class="col-xs-8"></div>
-            </div>
-            <br>
-            <div class="well">
-                <strong>Boss</strong>
-                <span class="glyphicon glyphicon-pencil pull-right"></span>
-                <br>
-                <blockquote>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <small>22/12/2015</small>
-                </blockquote>
-            </div>
-            <br>
-            <div class="text-center">
-                <a href="#" class="btn btn-warning btn-lg">
-                    <span class="glyphicon glyphicon-pencil"></span> &nbsp;&nbsp;Edit 
-                </a>
-                <a href="#" class="btn btn-danger btn-lg" style="margin-left">
-                    <span class="glyphicon glyphicon-trash"></span>  &nbsp;&nbsp;Delete 
-                </a>
-            </div>
+            </form>    
+            
+           
         </div>
     </div>
 </div>
