@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
 use Auth;
 use App\User;
@@ -28,16 +29,16 @@ class DocumentController extends Controller
     public function showDocument()
     {
         $user = Auth::user();
+        $query = Input::get('search');
+        $documents = Document::join('users','users.id','=','officer_id');
         if($user->is_boss == 1){
-          $documents = Document::join('users','users.id','=','officer_id')
-          ->select('documents.*', 'users.name as username')
-          ->get();
-        }else{
-          $documents = Document::join('users','users.id','=','officer_id')
-          ->where('users.id',$user->id)
-          ->select('documents.*', 'users.name as username')
-          ->get();
+          $documents = $documents->where('users.id', $user->id);
         }
+        if(isset($query)){
+          $documents = $documents->where('documents.name','LIKE', '%'.$query.'%');
+        }
+        $documents = $documents->select('documents.*', 'users.name as username');
+        $documents = $documents->get();
         return view('index', ['documents' => $documents,'user' => $user]);
     }
 
