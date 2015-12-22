@@ -10,3 +10,15 @@
 .nav-logo {
   height: 100%;
 }
+
+.file-desc {
+  min-height: 200px !important;
+}
+
+form > .row {
+  margin-bottom: 10px;
+}
+
+form > .row > label {
+   text-align: right;
+}
