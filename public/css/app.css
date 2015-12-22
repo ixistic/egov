@@ -1,3 +1,19 @@
+.status-app {
+  color: #27ae60;
+}
+
+.status-pre {
+  color: #2e8ece;
+}
+
+.status-dec {
+  color: #f1c40f;
+}
+
+.status-del {
+  color: #e74c3c;
+}
+
 .glyphicon {
   top: 0 !important;
 }
