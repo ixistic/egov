@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class UploadController extends Controller
+class DocumentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,8 +24,13 @@ class UploadController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
-        return view('upload');
-    }
+     public function index()
+     {
+         return view('index');
+     }
+
+     public function upload()
+     {
+         return view('upload');
+     }
 }

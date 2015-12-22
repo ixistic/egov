@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 /*
@@ -35,5 +35,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 
-    Route::get('/upload', 'UploadController@index');
+    Route::get('/document', 'DocumentController@index');
+
+    Route::get('/upload', 'DocumentController@upload');
 });
