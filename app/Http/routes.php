@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 /*
@@ -34,7 +34,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
-
     Route::group(['prefix' => 'documents'], function () {
       Route::get('/', [
         'as' => 'documents', 'uses' => 'DocumentController@showDocument'
@@ -58,6 +57,4 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'documents-delete', 'uses' => 'DocumentController@deleteDocument'
       ]);
     });
-
-    Route::get('/upload', 'UploadController@index');
 });
