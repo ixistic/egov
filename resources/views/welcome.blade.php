@@ -92,6 +92,15 @@
             <hr class="divider"/>
             <div class="row">
                 <div class="col-xs-4">
+                    <b>Status</b>
+                </div>
+                <div class="col-xs-8">
+                    Approved
+                </div>
+            </div>
+            <hr class="divider"/>
+            <div class="row">
+                <div class="col-xs-4">
                     <b>Feedback</b>
                 </div>
                 <div class="col-xs-8"></div>
