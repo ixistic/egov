@@ -56,7 +56,7 @@
           <!-- Authentication Links -->
           @if (Auth::guest())
           <li><a href="/login">Login</a></li>
-          
+
           @else
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -66,7 +66,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
             </ul>
-            @endif
+          @endif
           </ul>
         </div>
       </div>
