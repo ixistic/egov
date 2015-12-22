@@ -52,6 +52,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $document->created_at }}</td>
                 <td>{{ $document->updated_at }}</td>
+                @if ($user->is_boss == 0)
                 <td>
                   <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-sm" role="button">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -60,6 +61,7 @@
                     <span class="glyphicon glyphicon-trash"></span>
                   </a>
                 </td>
+                @endif
               </tr>
               @endforeach
             </tbody>
