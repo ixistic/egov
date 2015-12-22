@@ -31,7 +31,7 @@ class DocumentController extends Controller
         $user = Auth::user();
         $query = Input::get('search');
         $documents = Document::join('users','users.id','=','officer_id');
-        if($user->is_boss == 1){
+        if($user->is_boss == 0){
           $documents = $documents->where('users.id', $user->id);
         }
         if(isset($query)){
@@ -81,7 +81,7 @@ class DocumentController extends Controller
                 'description' => $request->description,
                 'status' => 'pre-request',
                 'officer_id' => $user->id,
-                'pic_path' => $fileName
+                'filename' => $fileName
             ]);
             return Redirect::route('documents')->with('message', 'Document added!');
         }else{
