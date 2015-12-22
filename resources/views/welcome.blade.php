@@ -95,7 +95,9 @@
             </div>
             <br>
             <div class="well">
-                <strong>Boss</strong><br>
+                <strong>Boss</strong>
+                <span class="glyphicon glyphicon-pencil pull-right"></span>
+                <br>
                 <blockquote>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                     <small>22/12/2015</small>
