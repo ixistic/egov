@@ -50,7 +50,7 @@
             <b>Description</b>
           </div>
           <div class="col-xs-8">
-            <textarea type="text" name="name" id="name">{{ $documents->description }}</textarea>
+            <textarea type="text" name="description" id="description">{{ $documents->description }}</textarea>
           </div>
         </div>
         <hr class="divider"/>

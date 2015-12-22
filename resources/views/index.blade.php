@@ -49,7 +49,7 @@
                 <td class="status-del">
                 @endif
                 {{ $document->status }}</td>
-                <td>{{ $user->name }}</td>
+                <td>{{ $document->username }}</td>
                 <td>{{ $document->created_at }}</td>
                 <td>{{ $document->updated_at }}</td>
                 @if ($user->is_boss == 0)
@@ -71,19 +71,3 @@
     </div>
   </div>
   @endsection
-
-  <script type="text/javascript">
-
-  $( document ).ready(function() {
-    $('form').each(function() {
-      $(this).find('input').keypress(function(e) {
-        // Enter pressed?
-        if(e.which == 10 || e.which == 13) {
-          console.log("qwe");
-          // this.form.submit();
-        }
-      });
-    });
-    $("#search-btn").find('input[type=submit]').hide();
-  });
-  </script>
