@@ -13,7 +13,7 @@ class AddPicPathColumn extends Migration
     public function up()
     {
       Schema::table('documents', function ($table) {
-        $table->string('pic_path');
+        $table->string('filename');
       });
     }
 
@@ -25,7 +25,7 @@ class AddPicPathColumn extends Migration
     public function down()
     {
       Schema::table('documents', function ($table) {
-        $table->dropColumn('pic_path');
+        $table->dropColumn('filename');
       });
     }
 }

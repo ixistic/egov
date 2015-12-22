@@ -35,41 +35,23 @@
               <th></th>
             </thead>
             <tbody>
-              {{--@foreach ($users as $user)
+              @foreach ($documents as $document)
                 <tr>
-                  <td></td>
-                  <td>{{ $user->id }}</td>
-                  <td>{{ $user->id }}</td>
-                  <td>{{ $user->id }}</td>
-                  <td>{{ $user->id }}</td>
+                  <td>{{ $document->name }}</td>
+                  <td>{{ $document->status }}</td>
+                  <td>{{ $document->username }}</td>
+                  <td>{{ $document->created_at }}</td>
+                  <td>{{ $document->updated_at }}</td>
                   <td>
-                    <a href="" class="btn btn-warning btn-sm" role="button">
+                    <a href="{{ route('documents-edit',$document->id) }}" class="btn btn-warning btn-sm" role="button">
                       <span class="glyphicon glyphicon-pencil"></span>
                     </a>
-                    <a href="" class="btn btn-danger btn-sm" role="button">
+                    <a href="{{ route('documents-delete',$document->id) }}" class="btn btn-danger btn-sm" role="button">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </td>
                 </tr>
-                @endforeach
-                --}}
-
-                <tr>
-                  <td>Document2</td>
-                  <td>Approved</td>
-                  <td>Officer2</td>
-                  <td>1 Nov 2015</td>
-                  <td>10 Dec 2015</td>
-                  <td>
-
-                    <a href="" class="btn btn-warning btn-sm" role="button">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <a href="" class="btn btn-danger btn-sm" role="button">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                  </td>
-                </tr>
+              @endforeach
               </tbody>
             </table>
           </div>

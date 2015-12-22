@@ -28,7 +28,9 @@ class DocumentController extends Controller
     public function showDocument()
     {
         $user = Auth::user();
-        $documents = Document::where('officer_id',$user->id)->get();
+        $documents = Document::join('users','users.id','=','officer_id')
+        ->select('documents.*', 'users.name as username')
+        ->get();
         return view('index', ['documents' => $documents,'user' => $user]);
     }
 
@@ -92,7 +94,7 @@ class DocumentController extends Controller
                 'description' => $request->description,
                 'status' => 'pre-request',
                 'officer_id' => $user->id,
-                'pic_path' => $fileName
+                'filename' => $fileName
             ]);
             return Redirect::route('documents')->with('message', 'Document edited!');
         }else{
