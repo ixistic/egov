@@ -34,9 +34,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
     Route::group(['prefix' => 'documents'], function () {
       Route::get('/', [
         'as' => 'documents', 'uses' => 'DocumentController@showDocument'
+      ]);
+      Route::get('/add', [
+        'as' => 'documents-add', 'uses' => 'DocumentController@showAddDocument'
       ]);
       Route::get('/detail/{id}', [
         'as' => 'documents-detail', 'uses' => 'DocumentController@showDetailDocument'
@@ -54,4 +58,6 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'documents-delete', 'uses' => 'DocumentController@deleteDocument'
       ]);
     });
+
+    Route::get('/upload', 'UploadController@index');
 });

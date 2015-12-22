@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use Auth;
 use App\User;
@@ -27,8 +28,12 @@ class DocumentController extends Controller
     public function showDocument()
     {
         $user = Auth::user();
-        $documents = Document::where('officer_id',$user->id)->first();
+        $documents = Document::where('officer_id',$user->id)->get();
         return view('documents', ['documents' => $documents,'user' => $user]);
+    }
+
+    public function showAddDocument(){
+        return view('document/add');
     }
 
     public function showDetailDocument($id){
@@ -52,14 +57,15 @@ class DocumentController extends Controller
         ]);
     }
 
-    protected function create(Request $request)
+    protected function postDocument(Request $request)
     {
-        if ($request->hasFile('file')) {
+        if ($request->exists('file')) {
             $user = Auth::user();
             $user_id = $user->id;
             $file = $request->file('file');
-            $fileName = str_random(12) . '.' .$request->file('file')->getClientOriginalExtension();
-            $request->file('image')->move(base_path() . '/public/file/', $fileName);
+            $ext = $file->getClientOriginalExtension();
+            $fileName = str_random(12).'.'.$ext;
+            $file->move(base_path() . '/public/file/', $fileName);
             Document::create([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -78,8 +84,9 @@ class DocumentController extends Controller
             $user = Auth::user();
             $user_id = $user->id;
             $file = $request->file('file');
-            $fileName = str_random(12).'.'.$request->file('file')->getClientOriginalExtension();
-            $request->file('image')->move(base_path() . '/public/file/', $fileName);
+            $ext = $file->getClientOriginalExtension();
+            $fileName = str_random(12).'.'.$ext;
+            $file->move(base_path() . '/public/file/', $fileName);
             Document::where('id',$id)->update([
                 'name' => $request->name,
                 'description' => $request->description,
