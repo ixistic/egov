@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
 <div class="container spark-screen">
   <h1>Documents</h1>
   <div class="row border-row">
@@ -78,8 +76,7 @@
         </div>
       </div>
     </div>
-
-    @endsection
+@endsection
 
     <script type="text/javascript">
 

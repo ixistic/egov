@@ -29,7 +29,7 @@ class DocumentController extends Controller
     {
         $user = Auth::user();
         $documents = Document::where('officer_id',$user->id)->get();
-        return view('documents', ['documents' => $documents,'user' => $user]);
+        return view('index', ['documents' => $documents,'user' => $user]);
     }
 
     public function showAddDocument(){
