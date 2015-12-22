@@ -3,7 +3,7 @@
 @section('content')
 <div class="container spark-screen">
   <h1>Documents</h1>
-  <div class="row border-row">
+  <div class="row border-row" style="margin-top: 3vh;">
     <div class="col-xs-12">
       <div class="row">
         <div class="col-xs-6">
