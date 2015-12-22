@@ -35,61 +35,52 @@
               <th></th>
             </thead>
             <tbody>
-              {{--@foreach ($users as $user)
-                <tr>
-                  <td></td>
-                  <td>{{ $user->id }}</td>
-                  <td>{{ $user->id }}</td>
-                  <td>{{ $user->id }}</td>
-                  <td>{{ $user->id }}</td>
-                  <td>
-                    <a href="" class="btn btn-warning btn-sm" role="button">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <a href="" class="btn btn-danger btn-sm" role="button">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                  </td>
-                </tr>
-                @endforeach
-                --}}
-
-                <tr>
-                  <td>Document2</td>
-                  <td>Approved</td>
-                  <td>Officer2</td>
-                  <td>1 Nov 2015</td>
-                  <td>10 Dec 2015</td>
-                  <td>
-
-                    <a href="" class="btn btn-warning btn-sm" role="button">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    <a href="" class="btn btn-danger btn-sm" role="button">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              @foreach ($documents as $document)
+              <tr>
+                <td>{{ $document->name }}</td>
+                @if ($document->status == "approved")
+                <td class="status-app">
+                @elseif ($document->status == "pre-request")
+                <td class="status-pre">
+                @elseif ($document->status == "declined")
+                <td class="status-dec">
+                @else ($document->status == "deleted")
+                <td class="status-del">
+                @endif
+                {{ $document->status }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $document->created_at }}</td>
+                <td>{{ $document->updated_at }}</td>
+                <td>
+                  <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-sm" role="button">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </a>
+                  <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-sm" role="button">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-@endsection
+  </div>
+  @endsection
 
-    <script type="text/javascript">
+  <script type="text/javascript">
 
-    $( document ).ready(function() {
-      $('form').each(function() {
-        $(this).find('input').keypress(function(e) {
-          // Enter pressed?
-          if(e.which == 10 || e.which == 13) {
-            console.log("qwe");
-            // this.form.submit();
-          }
-        });
+  $( document ).ready(function() {
+    $('form').each(function() {
+      $(this).find('input').keypress(function(e) {
+        // Enter pressed?
+        if(e.which == 10 || e.which == 13) {
+          console.log("qwe");
+          // this.form.submit();
+        }
       });
-      $("#search-btn").find('input[type=submit]').hide();
     });
-    </script>
+    $("#search-btn").find('input[type=submit]').hide();
+  });
+  </script>
