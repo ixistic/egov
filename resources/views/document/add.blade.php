@@ -6,11 +6,12 @@
   <h1>Upload Document</h1>
   <div class="row border-row" style="margin-top: 3vh;">
     <div class="col-xs-12">
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
           <label class="col-xs-2 col-xs-offset-2">Name</label>
           <div class="col-xs-6">
-            <input class="form-control" type="text" name="name" id="name" id="name">
+            <input class="form-control" type="text" name="name" id="name">
           </div>
         </div>
 
