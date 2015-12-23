@@ -25,7 +25,7 @@
         </div>
         <div class="col-xs-8">
           {{ $document->filename }}
-          @if ($document->status != "deleted")
+          @if ($document->status != "deleted" && $document->status != "approved")
             <a href="/file/{{$document->file_folder}}/{{$document->filename}}" type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
               <span class="glyphicon glyphicon-download-alt"></span> Download
             </a>
@@ -59,7 +59,7 @@
         </div>
       </div>
       <hr class="divider"/>
-      @if ($document->status != "deleted")
+      @if ($document->status != "deleted" && $document->status != "approved")
         @if ($user->is_boss == 0)
           <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -82,7 +82,7 @@
         <div class="col-xs-8"></div>
       </div>
       <br>
-      @if ($document->status != "deleted")
+      @if ($document->status != "deleted" && $document->status != "approved")
         @if ($user->is_boss == 1)
           <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -106,6 +106,7 @@ class DocumentController extends Controller
         Document::where('id',$id)->update([
             'name' => $request->name,
             'description' => $request->description,
+            'status' => 'pre-request',
             'filename' => $fileName,
             'file_folder' => $randomFolder
         ]);
