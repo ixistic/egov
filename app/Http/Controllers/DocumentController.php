@@ -48,13 +48,13 @@ class DocumentController extends Controller
 
     public function showDetailDocument($id){
         $user = Auth::user();
-        $document = Document::where(['id'=>$id,'officer_id'=>$user->id])->first();
+        $document = Document::where(['id'=>$id])->first();
         return view('document/detail', ['document' => $document,'user' => $user]);
     }
 
     public function showEditDocument($id){
         $user = Auth::user();
-        $documents = Document::where(['id'=>$id,'officer_id'=>$user->id])->first();
+        $documents = Document::where(['id'=>$id])->first();
         return view('document/edit', ['documents' => $documents,'user' => $user]);
     }
 
