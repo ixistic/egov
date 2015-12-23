@@ -75,32 +75,34 @@
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <div class="row">
                 <div class="col-xs-12">
-                    <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>    
+                  <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>
                 </div>
               </div>
-            
 
-            <br>
-            @if ($user->is_boss == 0)
-            <div class="text-center">
-              <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
-                <span class="glyphicon glyphicon-pencil"></span>Edit
-              </a>
-              <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-lg" style="margin-left">
-                <span class="glyphicon glyphicon-trash"></span>Delete
-              </a>
-            </div>
-            @else
-            <div class="text-center">
-                <button type="submit" class="btn btn-success btn-lg">
-                    <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve 
-                </button>
-                <a href="#" class="btn btn-danger btn-lg" style="margin-left">
-                    <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline 
-                </a>
-            </div>
-            @endif
-          </form>
+
+              <br>
+              @if ($document->status != "deleted")
+                @if ($user->is_boss == 0 )
+                <div class="text-center">
+                  <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
+                    <span class="glyphicon glyphicon-pencil"></span>Edit
+                  </a>
+                  <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-lg" style="margin-left">
+                    <span class="glyphicon glyphicon-trash"></span>Delete
+                  </a>
+                </div>
+                @else
+                <div class="text-center">
+                  <button type="submit" class="btn btn-success btn-lg">
+                    <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
+                  </button>
+                  <a href="#" class="btn btn-danger btn-lg" style="margin-left" onclick="return confirm('Are you sure?')">
+                    <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline
+                  </a>
+                </div>
+                @endif
+              @endif
+            </form>
           </div>
         </div>
       </div>
