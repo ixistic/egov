@@ -11,7 +11,7 @@
           <b>Name</b>
         </div>
         <div class="col-xs-8">
-          {{ $documents->name }}
+          {{ $document->name }}
         </div>
       </div>
       <hr class="divider"/>
@@ -20,7 +20,7 @@
           <b>File</b>
         </div>
         <div class="col-xs-8">
-          {{ $documents->filename }}
+          {{ $document->filename }}
         </div>
       </div>
       <hr class="divider"/>
@@ -28,16 +28,16 @@
         <div class="col-xs-4">
           <b>Status</b>
         </div>
-        @if ($documents->status == "approved")
+        @if ($document->status == "approved")
         <div class="col-xs-8 status-app">
-          @elseif ($documents->status == "pre-request")
+          @elseif ($document->status == "pre-request")
           <div class="col-xs-8 status-pre">
-            @elseif ($documents->status == "declined")
+            @elseif ($document->status == "declined")
             <div class="col-xs-8 status-dec">
-              @else ($documents->status == "deleted")
+              @else ($document->status == "deleted")
               <div class="col-xs-8 status-del">
                 @endif
-                {{ $documents->status }}
+                {{ $document->status }}
               </div>
             </div>
             <hr class="divider"/>
@@ -46,7 +46,7 @@
                 <b>Description</b>
               </div>
               <div class="col-xs-8">
-                {{ $documents->description }}
+                {{ $document->description }}
               </div>
             </div>
             <hr class="divider"/>
@@ -66,10 +66,10 @@
             </div>
             <br>
             <div class="text-center">
-              <a href="/documents/edit/{{ $documents->id }}" class="btn btn-warning btn-lg">
+              <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
                 <span class="glyphicon glyphicon-pencil"></span>Edit
               </a>
-              <a href="/documents/delete/{{ $documents->id }}" class="btn btn-danger btn-lg" style="margin-left">
+              <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-lg" style="margin-left">
                 <span class="glyphicon glyphicon-trash"></span>Delete
               </a>
             </div>
