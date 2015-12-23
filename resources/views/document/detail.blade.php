@@ -65,6 +65,7 @@
               </blockquote>
             </div>
             <br>
+            @if ($user->is_boss == 0)
             <div class="text-center">
               <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
                 <span class="glyphicon glyphicon-pencil"></span>Edit
@@ -73,6 +74,7 @@
                 <span class="glyphicon glyphicon-trash"></span>Delete
               </a>
             </div>
+            @endif
           </div>
         </div>
       </div>
