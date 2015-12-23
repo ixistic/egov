@@ -10,7 +10,7 @@
 
 ##Introduction
 
-This project is Officer&Boss Document Management Application is one part of Object Oriented Spftware Engineer (OOSE) and internship subject at kookmin university. This project tries to make a Document Management Application that officer can hand in document to his boss so that his boss can check, approve and share his document which can be run on Web Browser.This software project target to bring a general document management to be a online system on Web Application that easy to hand in, check, approve and share document.
+This project is Officer&Boss Document Management Application is one part of Object Oriented Software Engineer (OOSE) and internship subject at Kookmin University. This project tries to make a Document Management Application that officer can hand in document to his boss so that his boss can check, approve and share his document which can be run on Web Browser. This software project target to bring a general document management to be a online system on Web Application that easy to hand in, check, approve and share document.
 
 ##Product Features
 * Creating documents
