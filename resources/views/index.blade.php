@@ -30,66 +30,65 @@
       <br>
       <div class="row">
         <table class="table table-hover" >
+          @if (count($documents)>0)
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Status</th>
-              <th>Author</th>
-              <th>Created Date</th>
-              <th>Last Modified</th>
-              @if ($user->is_boss == 0)
-              <th></th>
-              @endif
-            </thead>
-            <tbody>
+              <th class="col-md-2">Title</th>
+              <th class="col-md-2">Status</th>
+              <th class="col-md-2">Author</th>
+              <th class="col-md-2">Created Date</th>
+              <th class="col-md-2">Last Modified</th>
+              <th class="col-md-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
               @foreach ($documents as $document)
               <tr>
                 <td>{{ $document->name }}</td>
                 @if ($document->status == "approved")
-                <td class="status-app">
-                  @elseif ($document->status == "pre-request")
+                  <td class="status-app">
+                @elseif ($document->status == "pre-request")
                   <td class="status-pre">
-                    @elseif ($document->status == "declined")
-                    <td class="status-dec">
-                      @else ($document->status == "deleted")
-                      <td class="status-del">
-                        @endif
-                        {{ $document->status }}</td>
-                        <td>{{ $document->username }}</td>
-                        <td>{{ $document->created_at }}</td>
-                        <td>{{ $document->updated_at }}</td>
-                        @if ($user->is_boss == 0)
-                        <td>
-                          <a href="/documents/detail/{{ $document->id }}" class="btn btn-primary btn-sm" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                          </a>
-                          @if ($document->status != "deleted" && $document->status != "approved")
-                          <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-sm" role="button">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
-                          <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-sm" role="button" onclick="return confirm('Are you sure?')">
-                            <span class="glyphicon glyphicon-trash"></span>
-                          </a>
-                          @endif
-                        </td>
-                        @else
-                        <td>
-                          <a href="/documents/detail/{{ $document->id }}" class="btn btn-primary btn-sm" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                          </a>
-                        </td>
-                        @endif
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          @endsection
-          <script>
-          function delete() {
-            confirm("Do you want to delete the document?");
-          }
-          </script>
+                @elseif ($document->status == "declined")
+                  <td class="status-dec">
+                @else ($document->status == "deleted")
+                  <td class="status-del">
+                @endif
+                {{ $document->status }}</td>
+                <td>{{ $document->username }}</td>
+                <td>{{ $document->created_at }}</td>
+                <td>{{ $document->updated_at }}</td>
+                @if ($user->is_boss == 0)
+                  <td>
+                    <a href="/documents/detail/{{ $document->id }}" class="btn btn-primary btn-sm" role="button">
+                      <span class="glyphicon glyphicon-eye-open"></span>
+                    </a>
+                    @if ($document->status != "deleted")
+                    <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-sm" role="button">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-sm" role="button" onclick="return confirm('Are you sure?')">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    @endif
+                  </td>
+                @else
+                  <td>
+                    <a href="/documents/detail/{{ $document->id }}" class="btn btn-primary btn-sm" role="button">
+                      <span class="glyphicon glyphicon-eye-open"></span>
+                    </a>
+                  </td>
+                @endif
+              </tr>
+              @endforeach
+            @else
+            <hr>
+              <center><h1>No file</h1></center>
+            @endif
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
