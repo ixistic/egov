@@ -32,14 +32,13 @@
         <table class="table table-hover" >
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Status</th>
-              <th>Author</th>
-              <th>Created Date</th>
-              <th>Last Modified</th>
-              @if ($user->is_boss == 0)
-                <th></th>
-              @endif
+              <th class="col-md-2">Title</th>
+              <th class="col-md-2">Status</th>
+              <th class="col-md-2">Author</th>
+              <th class="col-md-2">Created Date</th>
+              <th class="col-md-2">Last Modified</th>
+              <th class="col-md-2">Action</th>
+              
             </thead>
             <tbody>
               @foreach ($documents as $document)
