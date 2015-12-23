@@ -30,9 +30,11 @@ class DocumentController extends Controller
     {
         $user = Auth::user();
         $query = Input::get('search');
-        $documents = Document::join('users','users.id','=','officer_id');
         if($user->is_boss == 0){
-            $documents = $documents->where('users.id', $user->id);
+            $documents = Document::where('users.id', $user->id);
+            $documents = $documents->join('users','users.id','=','officer_id');
+        }else{
+            $documents = Document::join('users','users.id','=','officer_id');
         }
         if(isset($query)){
             $documents = $documents->where('documents.name','LIKE', '%'.$query.'%');

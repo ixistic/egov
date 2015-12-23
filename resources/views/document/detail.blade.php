@@ -59,25 +59,11 @@
         </div>
       </div>
       <hr class="divider"/>
-      <div class="row">
-        <div class="col-xs-4">
-          <b>Feedback</b>
-        </div>
-        <div class="col-xs-8"></div>
-      </div>
-      <br>
-      <div class="well">
-        <strong>Boss</strong><br>
-        <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <small>22/12/2015</small>
-        </blockquote>
-      </div>
       @if ($document->status != "deleted")
         @if ($user->is_boss == 0)
           <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="text-center">
+            <div class="text-right">
               <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
                 <span class="glyphicon glyphicon-pencil"></span>Edit
               </a>
@@ -95,7 +81,7 @@
               </div>
             </div>
             <br>
-            <div class="text-center">
+            <div class="text-right">
               <button type="submit" class="btn btn-success btn-lg">
                   <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
               </button>
@@ -105,7 +91,22 @@
             </div>
           </from>
         @endif
+        <hr class="divider"/>
       @endif
+      <div class="row">
+        <div class="col-xs-4">
+          <b>Feedback</b>
+        </div>
+        <div class="col-xs-8"></div>
+      </div>
+      <br>
+      <div class="well">
+        <strong>Boss</strong><br>
+        <blockquote>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+          <small>22/12/2015</small>
+        </blockquote>
+      </div>
     </div>
   </div>
 </div>
