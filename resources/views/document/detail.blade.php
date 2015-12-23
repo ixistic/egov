@@ -20,7 +20,7 @@
           <b>File</b>
         </div>
         <div class="col-xs-8">
-          Document1.pdf
+          {{ $documents->filename }}
         </div>
       </div>
       <hr class="divider"/>

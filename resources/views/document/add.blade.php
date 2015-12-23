@@ -19,9 +19,6 @@
           <div class="col-xs-6">
             <input class="form-control" type="file" name="file" id="file" placeholder="No file ...">
           </div>
-          <!-- <div class="col-xs-2">
-            <button type="button" class="btn btn-primary">Browse</button>
-          </div> -->
         </div>
 
         <div class="form-group">
