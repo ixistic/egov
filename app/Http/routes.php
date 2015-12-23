@@ -64,4 +64,9 @@ Route::group(['middleware' => 'web'], function () {
         'as' => 'documents-delete', 'uses' => 'DocumentController@deleteDocument'
       ]);
     });
+    Route::group(['prefix' => 'comments'], function () {
+      Route::post('/post', [
+        'as' => 'comments-post', 'uses' => 'CommentController@postComment'
+      ]);
+    });
 });

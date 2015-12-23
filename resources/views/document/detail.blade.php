@@ -25,7 +25,7 @@
         </div>
         <div class="col-xs-8">
           {{ $document->filename }}
-          @if ($document->status != "deleted")
+          @if ($document->status != "deleted" && $document->status != "approved")
             <a href="/file/{{$document->file_folder}}/{{$document->filename}}" type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
               <span class="glyphicon glyphicon-download-alt"></span> Download
             </a>
@@ -59,25 +59,11 @@
         </div>
       </div>
       <hr class="divider"/>
-      <div class="row">
-        <div class="col-xs-4">
-          <b>Feedback</b>
-        </div>
-        <div class="col-xs-8"></div>
-      </div>
-      <br>
-      <div class="well">
-        <strong>Boss</strong><br>
-        <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <small>22/12/2015</small>
-        </blockquote>
-      </div>
-      @if ($document->status != "deleted")
+      @if ($document->status != "deleted" && $document->status != "approved")
         @if ($user->is_boss == 0)
           <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="text-center">
+            <div class="text-right">
               <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
                 <span class="glyphicon glyphicon-pencil"></span>Edit
               </a>
@@ -86,16 +72,27 @@
               </a>
             </div>
           </form>
-        @else
-          <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
+          <hr class="divider"/>
+        @endif
+      @endif
+      <div class="row">
+        <div class="col-xs-4">
+          <b>Feedback</b>
+        </div>
+        <div class="col-xs-8"></div>
+      </div>
+      <br>
+      @if ($document->status != "deleted" && $document->status != "approved")
+        @if ($user->is_boss == 1)
+          <form class="form-horizontal"role="form" method="POST" action="{{ route('comments-post') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="document_id" value="{{ $document->id }}">
             <div class="row">
               <div class="col-xs-12">
-                  <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>
+                  <textarea class="form-control" rows="5" name="comment" id="comment" placeholder="Enter feedback"></textarea>
               </div>
             </div>
-            <br>
-            <div class="text-center">
+            <div class="text-right">
               <button type="submit" class="btn btn-success btn-lg">
                   <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
               </button>
@@ -103,9 +100,20 @@
                   <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline
               </a>
             </div>
-          </from>
+          </form>
+          <br>
         @endif
       @endif
+      <div class="well">
+        @foreach($comments as $comment)
+          <strong>{{ $comment->username }}</strong><br>
+          <blockquote>
+            <p>" {{ $comment->comment }} "</p>
+            <small class="text-right">Last modified : {{ $comment->updated_at }}</small>
+          </blockquote>
+          <hr>
+        @endforeach
+      </div>
     </div>
   </div>
 </div>

@@ -22,6 +22,7 @@
             <b>File</b>
           </div>
           <div class="col-xs-6">
+            {{$documents->filename}}<br><br>
             <input class="form-control" type="file" name="file" id="file">
           </div>
         </div>
@@ -54,27 +55,12 @@
           </div>
         </div>
         <hr class="divider"/>
-        <div class="row">
-          <div class="col-xs-4">
-            <b>Feedback</b>
-          </div>
-          <div class="col-xs-8"></div>
-        </div>
-        <br>
-        <div class="well">
-          <strong>Boss</strong><br>
-          <blockquote>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <small>22/12/2015</small>
-          </blockquote>
-        </div>
-        <br>
         <div class="text-center">
           <button type="submit" href="/documents/edit/post" class="btn btn-success btn-lg">
             <span class="glyphicon glyphicon-pencil"></span>Save
           </button>
-          <a href="/documents/delete/{{ $documents->id }}" class="btn btn-danger btn-lg" style="margin-left" onclick="return confirm('Are you sure?')">
-            <span class="glyphicon glyphicon-trash"></span>Delete
+          <a class="btn btn-danger btn-lg" style="margin-left" onclick="window.history.back();">
+            <span class="glyphicon glyphicon-remove"></span>Cancel
           </a>
         </div>
       </form>

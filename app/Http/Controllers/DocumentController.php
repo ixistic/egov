@@ -30,9 +30,11 @@ class DocumentController extends Controller
     {
         $user = Auth::user();
         $query = Input::get('search');
-        $documents = Document::join('users','users.id','=','officer_id');
         if($user->is_boss == 0){
-            $documents = $documents->where('users.id', $user->id);
+            $documents = Document::where('users.id', $user->id);
+            $documents = $documents->join('users','users.id','=','officer_id');
+        }else{
+            $documents = Document::join('users','users.id','=','officer_id');
         }
         if(isset($query)){
             $documents = $documents->where('documents.name','LIKE', '%'.$query.'%');
@@ -49,7 +51,11 @@ class DocumentController extends Controller
     public function showDetailDocument($id){
         $user = Auth::user();
         $document = Document::where(['id'=>$id])->first();
-        return view('document/detail', ['document' => $document,'user' => $user]);
+        $comments = Comment::where('document_id', $id);
+        $comments = $comments->join('users','users.id','=','boss_id');
+        $comments = $comments->select('comments.*', 'users.name as username');
+        $comments = $comments->get();
+        return view('document/detail', ['document' => $document,'user' => $user,'comments' => $comments]);
     }
 
     public function showEditDocument($id){
@@ -69,7 +75,7 @@ class DocumentController extends Controller
 
     protected function postDocument(Request $request)
     {
-        if ($request->exists('file')) {
+        if ($request->exists('file') && $request->exists('name')) {
             $user = Auth::user();
             $user_id = $user->id;
             $file = $request->file('file');
@@ -104,6 +110,7 @@ class DocumentController extends Controller
         Document::where('id',$id)->update([
             'name' => $request->name,
             'description' => $request->description,
+            'status' => 'pre-request',
             'filename' => $fileName,
             'file_folder' => $randomFolder
         ]);

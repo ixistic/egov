@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
+use Auth;
 use App\User;
+use App\Document;
+use App\Comment;
 use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PasswordController extends Controller
+class CommentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,13 +26,24 @@ class PasswordController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return Response
-     */
-    public function index()
+    protected function postComment(Request $request)
     {
-        return view('home');
+        if ($request->exists('comment')) {
+            $user = Auth::user();
+            $user_id = $user->id;
+            $document_id = $request->document_id;
+
+            Document::where('id',$document_id)->update([
+                'status' => 'approved',
+            ]);
+            Comment::create([
+                'comment' => $request->comment,
+                'boss_id' => $user->id,
+                'document_id' => $document_id
+            ]);
+            return Redirect::route('documents')->with('success', 'Document approved successful');
+        }else{
+            return Redirect::route('documents')->with('fail', 'Something wrong!!');
+        }
     }
 }
