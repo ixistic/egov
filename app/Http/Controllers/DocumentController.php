@@ -32,10 +32,10 @@ class DocumentController extends Controller
         $query = Input::get('search');
         $documents = Document::join('users','users.id','=','officer_id');
         if($user->is_boss == 0){
-          $documents = $documents->where('users.id', $user->id);
+            $documents = $documents->where('users.id', $user->id);
         }
         if(isset($query)){
-          $documents = $documents->where('documents.name','LIKE', '%'.$query.'%');
+            $documents = $documents->where('documents.name','LIKE', '%'.$query.'%');
         }
         $documents = $documents->select('documents.*', 'users.name as username');
         $documents = $documents->get();
@@ -73,38 +73,41 @@ class DocumentController extends Controller
             $user = Auth::user();
             $user_id = $user->id;
             $file = $request->file('file');
-            $ext = $file->getClientOriginalExtension();
-            $fileName = str_random(12).'.'.$ext;
-            $file->move(base_path() . '/public/file/', $fileName);
+            $randomFolder = str_random(12);
+            $fileName = $file->getClientOriginalName();
+            $file->move(base_path() . '/public/file/'.$randomFolder.'/', $file->getClientOriginalName());
             Document::create([
                 'name' => $request->name,
                 'description' => $request->description,
                 'status' => 'pre-request',
                 'officer_id' => $user->id,
-                'filename' => $fileName
+                'filename' => $fileName,
+                'file_folder' => $randomFolder
             ]);
-            return Redirect::route('documents')->with('message', 'Document added!');
+            return Redirect::route('documents')->with('success', 'Document added successful');
         }else{
-            return Redirect::route('documents')->with('message', 'Something wrong!!');
+            return Redirect::route('documents')->with('fail', 'Something wrong!!');
         }
     }
 
     public function editDocument(Request $request,$id){
         $oldDocument = Document::find($id);
         if ($request->exists('file')) {
-          $file = $request->file('file');
-          $ext = $file->getClientOriginalExtension();
-          $fileName = str_random(12).'.'.$ext;
-          $file->move(base_path() . '/public/file/', $fileName);
+            $file = $request->file('file');
+            $randomFolder = str_random(12);
+            $fileName = $file->getClientOriginalName();
+            $file->move(base_path() . '/public/file/'.$randomFolder.'/', $file->getClientOriginalName());
         }else{
-          $fileName = $oldDocument->filename;
+            $fileName = $oldDocument->filename;
+            $randomFolder = $oldDocument->file_folder;
         }
         Document::where('id',$id)->update([
             'name' => $request->name,
             'description' => $request->description,
-            'filename' => $fileName
+            'filename' => $fileName,
+            'file_folder' => $randomFolder
         ]);
-        return Redirect::route('documents')->with('message', 'Document edited!');
+        return Redirect::route('documents')->with('success', 'Document edited successful');
     }
 
     public function deleteDocument($id){
@@ -112,7 +115,7 @@ class DocumentController extends Controller
         if(isset($document)){
             Document::where('id',$id)->update(['status' => 'deleted']);
         }
-        return Redirect::route('documents');
+        return Redirect::route('documents')->with('success', 'Document deleted successful.');
     }
 
 }

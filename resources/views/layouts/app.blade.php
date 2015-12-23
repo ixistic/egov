@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
   <!-- Styles -->
-  
+
   <link href="{!! asset('css/app.css') !!}" rel="stylesheet">
   {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,37 @@
   </style>
 </head>
 <body id="app-layout">
+  <style type="text/css">
+    .notice{
+      position: fixed;
+      top: 10%;
+      left: 30%;
+      width: 40%;
+      line-height: 30px;
+      text-align: center;
+      overflow: auto;
+      z-index: 4000;
+      color:#fff;
+      font-size:20px;
+      padding:10px 10px 10px 10px;
+      border-radius: 5px;
+    }
+    .notice-success{
+      background-color: #5cb85c;
+    }
+    .notice-fail{
+      background-color: #d9534f;
+    }
+  </style>
+  @if(Session::has('success'))
+  <div id="notice" class="notice notice-success">
+        {{ Session::get('success') }}
+    </div>
+    @elseif(Session::has('fail'))
+    <div id="notice" class="notice notice-fail">
+        {{ Session::get('fail') }}
+    </div>
+  @endif
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
@@ -81,4 +112,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
-  </html>
+</html>
+<script type="text/javascript">
+	if(document.getElementById("notice")!== null)
+    $('#notice').delay(3000).fadeOut(1000);
+  $(document).ready(function(){
+	  $('.alert').fadeOut( 3000 );
+	});
+</script>
