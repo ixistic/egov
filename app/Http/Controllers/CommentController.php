@@ -14,7 +14,7 @@ use Validator;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PasswordController extends Controller
+class CommentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,24 +28,22 @@ class PasswordController extends Controller
 
     protected function postComment(Request $request)
     {
-        // if ($request->exists('file')) {
-        //     $user = Auth::user();
-        //     $user_id = $user->id;
-        //     $file = $request->file('file');
-        //     $randomFolder = str_random(12);
-        //     $fileName = $file->getClientOriginalName();
-        //     $file->move(base_path() . '/public/file/'.$randomFolder.'/', $file->getClientOriginalName());
-        //     Document::create([
-        //         'name' => $request->name,
-        //         'description' => $request->description,
-        //         'status' => 'pre-request',
-        //         'officer_id' => $user->id,
-        //         'filename' => $fileName,
-        //         'file_folder' => $randomFolder
-        //     ]);
-        //     return Redirect::route('documents')->with('success', 'Document added successful');
-        // }else{
-        //     return Redirect::route('documents')->with('fail', 'Something wrong!!');
-        // }
+        if ($request->exists('comment')) {
+            $user = Auth::user();
+            $user_id = $user->id;
+            $document_id = $request->document_id;
+
+            Document::where('id',$document_id)->update([
+                'status' => 'approved',
+            ]);
+            Comment::create([
+                'comment' => $request->comment,
+                'boss_id' => $user->id,
+                'document_id' => $document_id
+            ]);
+            return Redirect::route('documents')->with('success', 'Document approved successful');
+        }else{
+            return Redirect::route('documents')->with('fail', 'Something wrong!!');
+        }
     }
 }

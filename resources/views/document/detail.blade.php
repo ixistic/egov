@@ -84,11 +84,12 @@
       <br>
       @if ($document->status != "deleted" && $document->status != "approved")
         @if ($user->is_boss == 1)
-          <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
+          <form class="form-horizontal"role="form" method="POST" action="{{ route('comments-post') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="document_id" value="{{ $document->id }}">
             <div class="row">
               <div class="col-xs-12">
-                  <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>
+                  <textarea class="form-control" rows="5" name="comment" id="comment" placeholder="Enter feedback"></textarea>
               </div>
             </div>
             <div class="text-right">

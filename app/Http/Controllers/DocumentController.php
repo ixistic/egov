@@ -71,7 +71,7 @@ class DocumentController extends Controller
 
     protected function postDocument(Request $request)
     {
-        if ($request->exists('file')) {
+        if ($request->exists('file') && $request->exists('name')) {
             $user = Auth::user();
             $user_id = $user->id;
             $file = $request->file('file');
