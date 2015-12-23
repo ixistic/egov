@@ -72,26 +72,8 @@
               </a>
             </div>
           </form>
-        @else
-          <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="row">
-              <div class="col-xs-12">
-                  <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>
-              </div>
-            </div>
-            <br>
-            <div class="text-right">
-              <button type="submit" class="btn btn-success btn-lg">
-                  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
-              </button>
-              <a href="#" class="btn btn-danger btn-lg" style="margin-left">
-                  <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline
-              </a>
-            </div>
-          </from>
+          <hr class="divider"/>
         @endif
-        <hr class="divider"/>
       @endif
       <div class="row">
         <div class="col-xs-4">
@@ -100,6 +82,27 @@
         <div class="col-xs-8"></div>
       </div>
       <br>
+      @if ($document->status != "deleted")
+        @if ($user->is_boss == 1)
+          <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="row">
+              <div class="col-xs-12">
+                  <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>
+              </div>
+            </div>
+            <div class="text-right">
+              <button type="submit" class="btn btn-success btn-lg">
+                  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
+              </button>
+              <a href="#" class="btn btn-danger btn-lg" style="margin-left">
+                  <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline
+              </a>
+            </div>
+          </form>
+          <br>
+        @endif
+      @endif
       <div class="well">
         <strong>Boss</strong><br>
         <blockquote>
