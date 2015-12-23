@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="container spark-screen">
+  @if ($user->is_boss == 1)
+  <h1>Document (BOSS)</h1>
+  @else
   <h1>Documents</h1>
+  @endif
   <div class="row border-row" style="margin-top: 3vh;">
     <div class="col-xs-12">
       <div class="row">

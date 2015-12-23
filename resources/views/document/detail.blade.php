@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="container">
+  @if ($user->is_boss == 1)
+  <h1>Document Detail (BOSS)</h1>
+  @else
   <h1>Document Detail</h1>
+  @endif
   <div class="row border-row" style="margin-top: 3vh;">
     <div class="col-xs-12">
       <div class="row">
@@ -21,6 +25,9 @@
         </div>
         <div class="col-xs-8">
           {{ $document->filename }}
+          <button type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
+            <span class="glyphicon glyphicon-download-alt"></span> Download
+          </button>
         </div>
       </div>
       <hr class="divider"/>

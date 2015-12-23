@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-  <h1>Document Detail</h1>
+  <h1>Edit Document</h1>
   <div class="row border-row" style="margin-top: 3vh;">
     <div class="col-xs-12">
       <form role="form" method="POST" action="{{ route('documents-edit-post',$documents->id) }}" enctype="multipart/form-data">
