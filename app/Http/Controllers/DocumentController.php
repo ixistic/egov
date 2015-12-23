@@ -51,7 +51,11 @@ class DocumentController extends Controller
     public function showDetailDocument($id){
         $user = Auth::user();
         $document = Document::where(['id'=>$id])->first();
-        return view('document/detail', ['document' => $document,'user' => $user]);
+        $comments = Comment::where('document_id', $id);
+        $comments = $comments->join('users','users.id','=','boss_id');
+        $comments = $comments->select('comments.*', 'users.name as username');
+        $comments = $comments->get();
+        return view('document/detail', ['document' => $document,'user' => $user,'comments' => $comments]);
     }
 
     public function showEditDocument($id){

@@ -105,11 +105,14 @@
         @endif
       @endif
       <div class="well">
-        <strong>Boss</strong><br>
-        <blockquote>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <small>22/12/2015</small>
-        </blockquote>
+        @foreach($comments as $comment)
+          <strong>{{ $comment->username }}</strong><br>
+          <blockquote>
+            <p>" {{ $comment->comment }} "</p>
+            <small class="text-right">Last modified : {{ $comment->updated_at }}</small>
+          </blockquote>
+          <hr>
+        @endforeach
       </div>
     </div>
   </div>
