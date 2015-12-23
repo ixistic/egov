@@ -56,11 +56,20 @@
                 <td>{{ $document->updated_at }}</td>
                 @if ($user->is_boss == 0)
                 <td>
+                  <a href="/documents/detail/{{ $document->id }}" class="btn btn-primary btn-sm" role="button">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                  </a>
                   <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-sm" role="button">
                     <span class="glyphicon glyphicon-pencil"></span>
                   </a>
                   <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-sm" role="button">
                     <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+                </td>
+                @else
+                <td>
+                  <a href="/documents/detail/{{ $document->id }}" class="btn btn-primary btn-sm" role="button">
+                    <span class="glyphicon glyphicon-eye-open"></span>
                   </a>
                 </td>
                 @endif

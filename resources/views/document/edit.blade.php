@@ -12,8 +12,8 @@
           <div class="col-xs-4">
             <b>Name</b>
           </div>
-          <div class="col-xs-8">
-            <input class="col-md-6" type="text" name="name" id="name" value="{{ $documents->name }}">
+          <div class="col-xs-6">
+            <input class="form-control" type="text" name="name" id="name" value="{{ $documents->name }}">
           </div>
         </div>
         <hr class="divider"/>
@@ -21,8 +21,8 @@
           <div class="col-xs-4">
             <b>File</b>
           </div>
-          <div class="col-xs-8">
-            <input type="file" name="file" id="file">
+          <div class="col-xs-6">
+            <input class="form-control" type="file" name="file" id="file">
           </div>
         </div>
         <hr class="divider"/>
@@ -49,8 +49,8 @@
           <div class="col-xs-4">
             <b>Description</b>
           </div>
-          <div class="col-xs-8">
-            <textarea type="text" name="description" id="description">{{ $documents->description }}</textarea>
+          <div class="col-xs-6">
+            <textarea class="form-control" type="text" rows="5" name="description" id="description">{{ $documents->description }}</textarea>
           </div>
         </div>
         <hr class="divider"/>
