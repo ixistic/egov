@@ -112,6 +112,7 @@ class DocumentController extends Controller
         if(isset($document)){
             Document::where('id',$id)->update(['status' => 'deleted']);
         }
+        return Redirect::route('documents');
     }
 
 }

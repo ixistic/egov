@@ -31,7 +31,7 @@
 
         <div class="form-group">
           <div class="col-xs-6 col-xs-offset-4">
-            <button type="role" class="btn btn-primary btn-block">Upload</button>
+            <button type="submit" class="btn btn-primary btn-block">Upload</button>
           </div>
         </div>
       </form>
