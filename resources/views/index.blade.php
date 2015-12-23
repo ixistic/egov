@@ -87,6 +87,7 @@
             @endif
           </tbody>
         </table>
+        <div class="text-right">{!! $documents->links() !!}</div>
       </div>
     </div>
   </div>

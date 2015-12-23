@@ -41,7 +41,7 @@ class DocumentController extends Controller
         }
         $documents = $documents->select('documents.*', 'users.name as username');
         $documents = $documents->orderBy('updated_at', 'desc');
-        $documents = $documents->paginate(15);
+        $documents = $documents->paginate(10);
         return view('index', ['documents' => $documents,'user' => $user]);
     }
 
