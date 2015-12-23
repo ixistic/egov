@@ -29,6 +29,7 @@ class CommentController extends Controller
     protected function postComment(Request $request)
     {
         if ($request->exists('comment')) {
+          if($request->exists('approve')) {
             $user = Auth::user();
             $user_id = $user->id;
             $document_id = $request->document_id;
@@ -42,6 +43,22 @@ class CommentController extends Controller
                 'document_id' => $document_id
             ]);
             return Redirect::route('documents')->with('success', 'Document approved successful');
+          }
+          else if($request->exists('decline')){
+            $user = Auth::user();
+            $user_id = $user->id;
+            $document_id = $request->document_id;
+
+            Document::where('id',$document_id)->update([
+                'status' => 'declined',
+            ]);
+            Comment::create([
+                'comment' => $request->comment,
+                'boss_id' => $user->id,
+                'document_id' => $document_id
+            ]);
+            return Redirect::route('documents')->with('success', 'Document declined successful');
+          }
         }else{
             return Redirect::route('documents')->with('fail', 'Something wrong!!');
         }

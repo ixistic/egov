@@ -31,7 +31,7 @@
 
         <div class="form-group">
           <div class="col-xs-6 col-xs-offset-4">
-            <a href="#" class="btn btn-info btn-lg btn-block">
+            <button type="submit" class="btn btn-info btn-lg btn-block">
               <span class="glyphicon glyphicon-upload"></span> Upload
             </a>
           </div>

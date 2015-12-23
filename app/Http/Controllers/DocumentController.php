@@ -40,7 +40,8 @@ class DocumentController extends Controller
             $documents = $documents->where('documents.name','LIKE', '%'.$query.'%');
         }
         $documents = $documents->select('documents.*', 'users.name as username');
-        $documents = $documents->get();
+        $documents = $documents->orderBy('updated_at', 'desc');
+        $documents = $documents->paginate(15);
         return view('index', ['documents' => $documents,'user' => $user]);
     }
 
@@ -54,6 +55,7 @@ class DocumentController extends Controller
         $comments = Comment::where('document_id', $id);
         $comments = $comments->join('users','users.id','=','boss_id');
         $comments = $comments->select('comments.*', 'users.name as username');
+        $comments = $comments->orderBy('updated_at', 'desc');
         $comments = $comments->get();
         return view('document/detail', ['document' => $document,'user' => $user,'comments' => $comments]);
     }

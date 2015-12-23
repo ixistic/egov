@@ -82,7 +82,7 @@
         <div class="col-xs-8"></div>
       </div>
       <br>
-      @if ($document->status != "deleted" && $document->status != "approved")
+      @if ($document->status != "deleted" && $document->status != "approved" && $document->status != "declined")
         @if ($user->is_boss == 1)
           <form class="form-horizontal"role="form" method="POST" action="{{ route('comments-post') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -93,10 +93,10 @@
               </div>
             </div>
             <div class="text-right">
-              <button type="submit" class="btn btn-success btn-lg">
+              <button type="submit" name="approve" class="btn btn-success btn-lg">
                   <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
               </button>
-              <a href="#" class="btn btn-danger btn-lg" style="margin-left">
+              <button type="submit" name="decline" class="btn btn-danger btn-lg" style="margin-left">
                   <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline
               </a>
             </div>
