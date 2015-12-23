@@ -25,7 +25,7 @@
         </div>
         <div class="col-xs-8">
           {{ $document->filename }}
-          @if ($document->status != "deleted" && $document->status != "approved")
+          @if ($document->status != "deleted")
             <a href="/file/{{$document->file_folder}}/{{$document->filename}}" type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
               <span class="glyphicon glyphicon-download-alt"></span> Download
             </a>
