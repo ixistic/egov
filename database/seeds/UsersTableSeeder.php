@@ -17,5 +17,11 @@ class UsersTableSeeder extends Seeder
           'password' => '$2y$10$zvlF7EZRBeM7jI84VzRR6uJbjPi1sGAlj.aPrOm/60GkT1fRvtHHu',
           'is_boss' => '1'
       ]);
+      DB::table('users')->insert([
+          'name' => str_random(10),
+          'email' => 'earth@earth.com',
+          'password' => '$2y$10$zvlF7EZRBeM7jI84VzRR6uJbjPi1sGAlj.aPrOm/60GkT1fRvtHHu',
+          'is_boss' => '0'
+      ]);
     }
 }
