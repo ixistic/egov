@@ -25,9 +25,11 @@
         </div>
         <div class="col-xs-8">
           {{ $document->filename }}
-          <a href="" type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
-            <span class="glyphicon glyphicon-download-alt"></span> Download
-          </a>
+          @if ($document->status != "deleted")
+            <a href="/file/{{$document->file_folder}}/{{$document->filename}}" type="button" class="btn btn-info btn-sm" style="margin-left:3vh;">
+              <span class="glyphicon glyphicon-download-alt"></span> Download
+            </a>
+          @endif
         </div>
       </div>
       <hr class="divider"/>
@@ -71,36 +73,38 @@
           <small>22/12/2015</small>
         </blockquote>
       </div>
-      @if ($user->is_boss == 0)
-        <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <div class="text-center">
-            <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
-              <span class="glyphicon glyphicon-pencil"></span>Edit
-            </a>
-            <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-lg" style="margin-left">
-              <span class="glyphicon glyphicon-trash"></span>Delete
-            </a>
-          </div>
-        </form>
-      @else
-        <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <div class="row">
-            <div class="col-xs-12">
-                <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>
+      @if ($document->status != "deleted")
+        @if ($user->is_boss == 0)
+          <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="text-center">
+              <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-lg">
+                <span class="glyphicon glyphicon-pencil"></span>Edit
+              </a>
+              <a href="/documents/delete/{{ $document->id }}" class="btn btn-danger btn-lg" style="margin-left"  onclick="return confirm('Are you sure?')">
+                <span class="glyphicon glyphicon-trash"></span>Delete
+              </a>
             </div>
-          </div>
-          <br>
-          <div class="text-center">
-            <button type="submit" class="btn btn-success btn-lg">
-                <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
-            </button>
-            <a href="#" class="btn btn-danger btn-lg" style="margin-left">
-                <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline
-            </a>
-          </div>
-        </from>
+          </form>
+        @else
+          <form class="form-horizontal"role="form" method="POST" action="{{ route('documents-post') }}" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="row">
+              <div class="col-xs-12">
+                  <textarea class="form-control" rows="5" placeholder="Enter feedback"></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success btn-lg">
+                  <span class="glyphicon glyphicon-ok"></span> &nbsp;&nbsp;Approve
+              </button>
+              <a href="#" class="btn btn-danger btn-lg" style="margin-left">
+                  <span class="glyphicon glyphicon-remove"></span>  &nbsp;&nbsp;Decline
+              </a>
+            </div>
+          </from>
+        @endif
       @endif
     </div>
   </div>

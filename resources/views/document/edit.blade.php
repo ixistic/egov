@@ -73,7 +73,7 @@
           <button type="submit" href="/documents/edit/post" class="btn btn-success btn-lg">
             <span class="glyphicon glyphicon-pencil"></span>Save
           </button>
-          <a href="/documents/delete/{{ $documents->id }}" class="btn btn-danger btn-lg" style="margin-left">
+          <a href="/documents/delete/{{ $documents->id }}" class="btn btn-danger btn-lg" style="margin-left" onclick="return confirm('Are you sure?')">
             <span class="glyphicon glyphicon-trash"></span>Delete
           </a>
         </div>

@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', ['as' => 'home', function () {
+    return Redirect::route('documents');
+}]);
+
 // Route::get('/', [
 //   'as' => 'documents', 'uses' => 'DocumentController@showDocument'
 // ]);
@@ -35,11 +39,12 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::get('/', [
-      'as' => 'documents', 'uses' => 'DocumentController@showDocument'
-    ]);
+
     Route::get('/home', 'HomeController@index');
     Route::group(['prefix' => 'documents'], function () {
+      Route::get('/', [
+        'as' => 'documents', 'uses' => 'DocumentController@showDocument'
+      ]);
       Route::get('/add', [
         'as' => 'documents-add', 'uses' => 'DocumentController@showAddDocument'
       ]);
