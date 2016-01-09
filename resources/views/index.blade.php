@@ -63,7 +63,7 @@
                     <a href="/documents/detail/{{ $document->id }}" class="btn btn-primary btn-sm" role="button">
                       <span class="glyphicon glyphicon-eye-open"></span>
                     </a>
-                    @if ($document->status != "deleted")
+                    @if ($document->status != "deleted" && $document->status != "approved")
                     <a href="/documents/edit/{{ $document->id }}" class="btn btn-warning btn-sm" role="button">
                       <span class="glyphicon glyphicon-pencil"></span>
                     </a>

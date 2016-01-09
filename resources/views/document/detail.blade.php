@@ -105,14 +105,18 @@
         @endif
       @endif
       <div class="well">
-        @foreach($comments as $comment)
-          <strong>{{ $comment->username }}</strong><br>
-          <blockquote>
-            <p>" {{ $comment->comment }} "</p>
-            <small class="text-right">Last modified : {{ $comment->updated_at }}</small>
-          </blockquote>
-          <hr>
-        @endforeach
+        @if(count($comments) > 0)
+          @foreach($comments as $comment)
+            <strong>{{ $comment->username }}</strong><br>
+            <blockquote>
+              <p>" {{ $comment->comment }} "</p>
+              <small class="text-right">Last modified : {{ $comment->updated_at }}</small>
+            </blockquote>
+            <hr>
+          @endforeach
+        @else
+          No feedback
+        @endif
       </div>
     </div>
   </div>
